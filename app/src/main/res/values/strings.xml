@@ -5,4 +5,18 @@
     <string name="senha">Senha</string>
     <string name="email">Email</string>
     <string name="logo">Logo</string>
+
+    <string-array name="items">
+        <item>Escolher tipo</item>
+        <item>Transporte</item>
+        <item>Alimentação</item>
+        <item>Casa</item>
+        <item>Entretenimento</item>
+        <item>Educação</item>
+        <item>Caridade</item>
+        <item>Vestuário</item>
+        <item>Saúde</item>
+        <item>Pessoal</item>
+        <item>Outros</item>
+    </string-array>
 </resources>

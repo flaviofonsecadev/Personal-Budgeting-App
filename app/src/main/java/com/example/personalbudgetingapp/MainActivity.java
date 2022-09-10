@@ -2,6 +2,7 @@ package com.example.personalbudgetingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.personalbudgetingapp.databinding.ActivityMainBinding;
@@ -14,5 +15,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.budgetCardView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, BudgetActivity.class)));
+
+
     }
 }

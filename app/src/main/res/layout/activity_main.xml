@@ -85,10 +85,6 @@
                 android:textSize="12sp"/>
 
 
-
-
-
-
         </TableRow>
 
         <TableRow>
@@ -401,7 +397,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="My Budget"
+                        android:text="History"
                         android:textStyle="bold"
                         android:textColor="#000"
                         android:textAlignment="center"/>
@@ -420,9 +416,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             app:fabSize="normal"
-            android:backgroundTint="#000"
             android:src="@drawable/ic_add"
             android:layout_margin="16dp"
+            app:backgroundTint="@color/black"
             />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
