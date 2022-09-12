@@ -2,19 +2,19 @@ package com.example.personalbudgetingapp;
 
 public class Data {
     String item, date, id, notes;
-    int amount, mouth;
+    int amount, month;
 
     public Data(){
 
     }
 
-    public Data(String item, String date, String id, String notes, int amount, int mouth) {
+    public Data(String item, String date, String id, String notes, int amount, int month) {
         this.item = item;
         this.date = date;
         this.id = id;
         this.notes = notes;
         this.amount = amount;
-        this.mouth = mouth;
+        this.month = month;
     }
 
     public String getItem() {
@@ -57,11 +57,11 @@ public class Data {
         this.amount = amount;
     }
 
-    public int getMouth() {
-        return mouth;
+    public int getMonth() {
+        return month;
     }
 
-    public void setMouth(int mouth) {
-        this.mouth = mouth;
+    public void setMonth(int month) {
+        this.month = month;
     }
 }

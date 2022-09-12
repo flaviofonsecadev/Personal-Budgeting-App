@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.budgetCardView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, BudgetActivity.class)));
+        
+        binding.todayCardView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, TodaySpendingActivity.class)));
 
 
     }
