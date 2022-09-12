@@ -62,11 +62,6 @@ public class BudgetActivity extends AppCompatActivity {
         loader = new ProgressDialog(this);
 
 
-
-        binding.fab.setOnClickListener(view -> {
-            addItem();
-        });
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         binding.recyclerview.setLayoutManager(linearLayoutManager);
         binding.recyclerview.setHasFixedSize(true);
@@ -91,6 +86,10 @@ public class BudgetActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        });
+
+        binding.fab.setOnClickListener(view -> {
+            addItem();
         });
 
     }
@@ -236,7 +235,7 @@ public class BudgetActivity extends AppCompatActivity {
     public class MyViewHolder extends RecyclerView.ViewHolder{
         View mView;
         public ImageView imageView;
-        public TextView notes;
+        public TextView notes, date;
 
 
         public MyViewHolder(@NonNull View itemView){
@@ -244,6 +243,7 @@ public class BudgetActivity extends AppCompatActivity {
             mView = itemView;
             imageView = itemView.findViewById(R.id.imageView);
             notes = itemView.findViewById(R.id.note);
+            date = itemView.findViewById(R.id.date);
         }
 
         public void setItemName(String itemName){
@@ -257,8 +257,8 @@ public class BudgetActivity extends AppCompatActivity {
         }
 
         public void setDate(String itemDate){
-            TextView item = mView.findViewById(R.id.date);
-            item.setText(itemDate);
+            TextView date = mView.findViewById(R.id.date);
+            date.setText(itemDate);
         }
 
     }
@@ -314,7 +314,7 @@ public class BudgetActivity extends AppCompatActivity {
         delBut.setOnClickListener(view -> {
             budgetRef.child(post_key).removeValue().addOnCompleteListener(task -> {
                 if (task.isSuccessful()){
-                    Toast.makeText(BudgetActivity.this, "Deltado com sucesso!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BudgetActivity.this, "Deletado com sucesso!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(BudgetActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                 }
