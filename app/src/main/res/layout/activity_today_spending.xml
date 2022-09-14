@@ -25,7 +25,7 @@
             android:id="@+id/totalAmountSpentOn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Valor total R$ 0,0"
+            android:text="Valor total do dia R$ 0,0"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"

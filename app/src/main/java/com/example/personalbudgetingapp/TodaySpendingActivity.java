@@ -28,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.joda.time.DateTime;
 import org.joda.time.Months;
 import org.joda.time.MutableDateTime;
+import org.joda.time.Weeks;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -39,7 +40,6 @@ import java.util.Map;
 public class TodaySpendingActivity extends AppCompatActivity {
     ActivityTodaySpendingBinding binding;
     private ProgressDialog loader;
-    //private ProgressBar progressBar;
     private DatabaseReference expensesRef;
     private FirebaseAuth mAuth;
     private String onlineUserId = "";
@@ -55,8 +55,6 @@ public class TodaySpendingActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setTitle("Gastos Diários");
-
-
 
         mAuth = FirebaseAuth.getInstance();
         onlineUserId = mAuth.getCurrentUser().getUid();
@@ -171,9 +169,10 @@ public class TodaySpendingActivity extends AppCompatActivity {
                 MutableDateTime epoch = new MutableDateTime();
                 epoch.setDate(0);
                 DateTime now = new DateTime();
+                Weeks weeks = Weeks.weeksBetween(epoch, now);
                 Months months = Months.monthsBetween(epoch, now);
 
-                Data data = new Data(Item, date, id, notes, Integer.parseInt(Amount), months.getMonths());
+                Data data = new Data(Item, date, id, notes, Integer.parseInt(Amount), months.getMonths(), weeks.getWeeks());
                 expensesRef.child(id).setValue(data).addOnCompleteListener(task -> {
                     if (task.isSuccessful()){
                         Toast.makeText(TodaySpendingActivity.this, "Despesa adicionada com sucesso!", Toast.LENGTH_SHORT).show();
