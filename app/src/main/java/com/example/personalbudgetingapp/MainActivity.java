@@ -16,9 +16,11 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.budgetCardView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, BudgetActivity.class)));
+        binding.budgetBtnImageView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, BudgetActivity.class)));
         
-        binding.todayCardView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, TodaySpendingActivity.class)));
+        binding.todayBtnImageView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, TodaySpendingActivity.class)));
+
+        binding.weekBtnImageView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, WeekSpendingActivity.class)));
 
 
     }

@@ -195,6 +195,7 @@
                     >
 
                     <ImageView
+                        android:id="@+id/budgetBtnImageView"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@drawable/budget"/>
@@ -234,6 +235,7 @@
                     >
 
                     <ImageView
+                        android:id="@+id/todayBtnImageView"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@drawable/today"/>
@@ -273,6 +275,7 @@
                     >
 
                     <ImageView
+                        android:id="@+id/weekBtnImageView"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@drawable/week"/>
@@ -312,6 +315,7 @@
                     >
 
                     <ImageView
+                        android:id="@+id/monthBtnImageView"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@drawable/month"/>
