@@ -22,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
         binding.weekBtnImageView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, WeekSpendingActivity.class)));
 
+        binding.monthBtnImageView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, MonthSpendingActivity.class)));
+
+        binding.analyticsImageView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ChooseAnalyticActivity.class)));
+
 
     }
 }

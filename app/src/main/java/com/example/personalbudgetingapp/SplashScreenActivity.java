@@ -18,8 +18,6 @@ public class SplashScreenActivity extends AppCompatActivity {
     Animation animation;
     ActivitySplashScreenBinding binding;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
