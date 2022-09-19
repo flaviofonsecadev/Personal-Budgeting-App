@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         authStateListener = firebaseAuth -> {
-            //TODO - não carregar a tela de login se já estiver logado
+            //TODO - não carregar a tela de login se já estiver logado.
             FirebaseUser user = mAuth.getCurrentUser();
             if (user != null){
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
