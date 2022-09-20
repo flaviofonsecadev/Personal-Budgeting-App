@@ -53,7 +53,9 @@ dependencies {
 
     // FirebaseUI for Firebase Auth
     implementation 'com.firebaseui:firebase-ui-auth:8.0.1'
-        
+
+    //AnyChart
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
 
 
 }
