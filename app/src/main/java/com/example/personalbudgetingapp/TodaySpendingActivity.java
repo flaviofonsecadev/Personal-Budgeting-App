@@ -172,7 +172,12 @@ public class TodaySpendingActivity extends AppCompatActivity {
                 Weeks weeks = Weeks.weeksBetween(epoch, now);
                 Months months = Months.monthsBetween(epoch, now);
 
-                Data data = new Data(Item, date, id, notes, Integer.parseInt(Amount), months.getMonths(), weeks.getWeeks());
+                String intemNday = Item + date;
+                String intemNweek = Item + weeks.getWeeks();
+                String intemNmonth = Item + months.getMonths();
+
+                Data data = new Data(Item, date, id, intemNday, intemNweek, intemNmonth, Integer.parseInt(Amount),
+                        weeks.getWeeks(), months.getMonths(), notes);
                 expensesRef.child(id).setValue(data).addOnCompleteListener(task -> {
                     if (task.isSuccessful()){
                         Toast.makeText(TodaySpendingActivity.this, "Despesa adicionada com sucesso!", Toast.LENGTH_SHORT).show();
