@@ -138,7 +138,12 @@ public class BudgetActivity extends AppCompatActivity {
                 Weeks weeks = Weeks.weeksBetween(epoch, now);
                 Months months = Months.monthsBetween(epoch, now);
 
-                Data data = new Data(budgetItem, date, id, null, Integer.parseInt(budgetAmount), months.getMonths(), weeks.getWeeks());
+                String intemNday = budgetItem + date;
+                String intemNweek = budgetItem + weeks.getWeeks();
+                String intemNmonth = budgetItem + months.getMonths();
+
+                Data data = new Data(budgetItem, date, id, intemNday, intemNweek, intemNmonth, Integer.parseInt(budgetAmount),
+                        weeks.getWeeks(), months.getMonths(), null);
                 budgetRef.child(id).setValue(data).addOnCompleteListener(task -> {
                     if (task.isSuccessful()){
                         Toast.makeText(BudgetActivity.this, "Despesa adicionada com sucesso!", Toast.LENGTH_SHORT).show();
@@ -300,7 +305,12 @@ public class BudgetActivity extends AppCompatActivity {
             Weeks weeks = Weeks.weeksBetween(epoch, now);
             Months months = Months.monthsBetween(epoch, now);
 
-            Data data = new Data(item, date, post_key, null, amount, months.getMonths(), weeks.getWeeks());
+            String intemNday = item + date;
+            String intemNweek = item + weeks.getWeeks();
+            String intemNmonth = item + months.getMonths();
+
+            Data data = new Data(item, date, post_key, intemNday, intemNweek, intemNmonth, amount,
+                    weeks.getWeeks(), months.getMonths(), null);
             budgetRef.child(post_key).setValue(data).addOnCompleteListener(task -> {
                 if (task.isSuccessful()){
                     Toast.makeText(BudgetActivity.this, "Atualizado com sucesso!", Toast.LENGTH_SHORT).show();

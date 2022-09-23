@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.budgetBtnImageView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, BudgetActivity.class)));
         
-        binding.todayBtnImageView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, TodaySpendingActivity.class)));
+        binding.todayCardView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, TodaySpendingActivity.class)));
 
         binding.weekBtnImageView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, WeekSpendingActivity.class)));
 
