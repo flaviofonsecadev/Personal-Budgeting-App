@@ -17,5 +17,7 @@ public class ChooseAnalyticActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.todayCardView.setOnClickListener(view -> startActivity(new Intent(ChooseAnalyticActivity.this, DailyAnalyticsActivity.class)));
+        binding.weekCardView.setOnClickListener(view -> startActivity(new Intent(ChooseAnalyticActivity.this, WeeklyAnalyticsActivity.class)));
+        binding.monthCardView.setOnClickListener(view -> startActivity(new Intent(ChooseAnalyticActivity.this, MonthlyAnalyticsActivity.class)));
     }
 }

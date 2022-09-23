@@ -619,7 +619,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:text="Today"
+                            android:text="Hoje"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
 
@@ -889,7 +889,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Summary Spending Status"
+                            android:text="Status do Resumo de Gastos"
                             android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -898,7 +898,7 @@
                             android:id="@+id/monthSpentAmount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Total Spent: $ 0"
+                            android:text="Total Gasto: R$ 0"
                             android:textColor="@color/black"
                             android:textSize="15sp"
                             android:textStyle="bold" />
