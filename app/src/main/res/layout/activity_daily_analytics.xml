@@ -109,7 +109,7 @@
                     android:layout_margin="5dp">
 
                     <LinearLayout
-                        android:id="@+id/linearLayout"
+                        android:id="@+id/linearLayoutTransport"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -243,7 +243,10 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_margin="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_toEndOf="@+id/linearLayoutFood"
                         android:src="@drawable/ic_food" />
 
@@ -898,7 +901,7 @@
                             android:id="@+id/monthSpentAmount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Total Gasto: R$ 0"
+                            android:text="Total Gasto: R$ "
                             android:textColor="@color/black"
                             android:textSize="15sp"
                             android:textStyle="bold" />
