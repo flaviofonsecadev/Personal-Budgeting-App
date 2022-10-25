@@ -8,15 +8,15 @@
 
     <string-array name="items">
         <item>Escolher tipo</item>
-        <item>Transporte</item>
-        <item>Alimentação</item>
-        <item>Casa</item>
-        <item>Entretenimento</item>
-        <item>Educação</item>
-        <item>Caridade</item>
-        <item>Vestuário</item>
-        <item>Saúde</item>
-        <item>Pessoal</item>
-        <item>Outros</item>
+        <item>Transport</item>
+        <item>Food</item>
+        <item>House</item>
+        <item>Entertainment</item>
+        <item>Education</item>
+        <item>Charity</item>
+        <item>Apparel</item>
+        <item>Health</item>
+        <item>Personal</item>
+        <item>Other</item>
     </string-array>
 </resources>

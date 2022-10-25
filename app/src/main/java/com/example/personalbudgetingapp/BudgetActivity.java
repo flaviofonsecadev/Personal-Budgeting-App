@@ -38,8 +38,10 @@ import org.joda.time.MutableDateTime;
 import org.joda.time.Weeks;
 
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Map;
 
 public class BudgetActivity extends AppCompatActivity {
@@ -64,7 +66,6 @@ public class BudgetActivity extends AppCompatActivity {
         budgetRef = FirebaseDatabase.getInstance().getReference().child("budget").child(mAuth.getCurrentUser().getUid());
         personalRef = FirebaseDatabase.getInstance().getReference("personal").child(mAuth.getCurrentUser().getUid());
         loader = new ProgressDialog(this);
-
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         binding.recyclerview.setLayoutManager(linearLayoutManager);
@@ -547,7 +548,10 @@ public class BudgetActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<Data, MyViewHolder> adapter = new FirebaseRecyclerAdapter<Data, MyViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Data model) {
-                holder.setItemAmount("Valor: R$"+ model.getAmount());
+                Locale localeBR = new Locale("pt", "br");
+                NumberFormat currency = NumberFormat.getCurrencyInstance(localeBR);
+
+                holder.setItemAmount("Valor: " + currency.format(model.getAmount()));
                 holder.setDate("Data: "+model.getDate());
                 holder.setItemName("Tipo: "+model.getItem());
 
