@@ -66,7 +66,11 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
 
         getTotalDaySpending();
 
+        loadGraph();
+
     }
+
+
 
     private void getTotalWeekTransportExpenses() {
         MutableDateTime epoch = new MutableDateTime();
@@ -421,6 +425,7 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
         });
     }
 
+
     private void getTotalDaySpending() {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendar = Calendar.getInstance();
@@ -453,6 +458,49 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
                 Toast.makeText(DailyAnalyticsActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+    private void loadGraph() {
+        personalRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+
+                    int traTotal;
+                    if (snapshot.hasChild("dayTrans")){
+                        traTotal = Integer.parseInt(snapshot.child("dayTrans").getValue().toString());
+                    }else {
+                        traTotal = 0;
+                    }
+
+                    int foodTotal;
+                    if (snapshot.hasChild("dayFood")){
+                        foodTotal = Integer.parseInt(snapshot.child("dayFood").getValue().toString());
+                    }else {
+                        foodTotal = 0;
+                    }
+
+                    int houseTotal;
+                    if (snapshot.hasChild("dayHouse")){
+                        houseTotal = Integer.parseInt(snapshot.child("dayHouse").getValue().toString());
+                    }else {
+                        houseTotal = 0;
+                    }
+                    ///TODO completar com os outros .. entretenimento, education, etc
+
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
 
