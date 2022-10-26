@@ -8,7 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
+import com.anychart.chart.common.dataentry.DataEntry;
+import com.anychart.chart.common.dataentry.ValueDataEntry;
+import com.anychart.charts.Pie;
+import com.anychart.enums.Align;
+import com.anychart.enums.LegendLayout;
 import com.example.personalbudgetingapp.databinding.ActivityDailyAnalyticsBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -24,7 +30,9 @@ import org.joda.time.MutableDateTime;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -34,6 +42,7 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String onlineUserId = "";
     private ProgressDialog loader;
+    AnyChartView anyChartView = null;
 
 
     @Override
@@ -487,21 +496,218 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
                     }else {
                         houseTotal = 0;
                     }
-                    ///TODO completar com os outros .. entretenimento, education, etc
+
+                    int entTotal;
+                    if (snapshot.hasChild("dayEnt")){
+                        entTotal = Integer.parseInt(snapshot.child("dayEnt").getValue().toString());
+                    }else {
+                        entTotal = 0;
+                    }
+
+                    int eduTotal;
+                    if (snapshot.hasChild("dayEdu")){
+                        eduTotal = Integer.parseInt(snapshot.child("dayEdu").getValue().toString());
+                    }else {
+                        eduTotal = 0;
+                    }
+
+                    int chaTotal;
+                    if (snapshot.hasChild("dayCha")){
+                        chaTotal = Integer.parseInt(snapshot.child("dayCha").getValue().toString());
+                    }else {
+                        chaTotal = 0;
+                    }
+
+                    int appTotal;
+                    if (snapshot.hasChild("dayApp")){
+                        appTotal = Integer.parseInt(snapshot.child("dayApp").getValue().toString());
+                    }else {
+                        appTotal = 0;
+                    }
+
+                    int heaTotal;
+                    if (snapshot.hasChild("dayHea")){
+                        heaTotal = Integer.parseInt(snapshot.child("dayHea").getValue().toString());
+                    }else {
+                        heaTotal = 0;
+                    }
+
+                    int perTotal;
+                    if (snapshot.hasChild("dayPer")){
+                        perTotal = Integer.parseInt(snapshot.child("dayPer").getValue().toString());
+                    }else {
+                        perTotal = 0;
+                    }
+
+                    int othTotal;
+                    if (snapshot.hasChild("dayOther")){
+                        othTotal = Integer.parseInt(snapshot.child("dayOther").getValue().toString());
+                    }else {
+                        othTotal = 0;
+                    }
+
+                    Pie pie = AnyChart.pie();
+                    List<DataEntry> data = new ArrayList<>();
+                    data.add(new ValueDataEntry("Transport", traTotal));
+                    data.add(new ValueDataEntry("House exp", houseTotal));
+                    data.add(new ValueDataEntry("Food", foodTotal));
+                    data.add(new ValueDataEntry("Entertainment", entTotal));
+                    data.add(new ValueDataEntry("Education", eduTotal));
+                    data.add(new ValueDataEntry("Charity", chaTotal));
+                    data.add(new ValueDataEntry("Apparel", appTotal));
+                    data.add(new ValueDataEntry("Health", heaTotal));
+                    data.add(new ValueDataEntry("Personal", perTotal));
+                    data.add(new ValueDataEntry("Other", othTotal));
+
+                    pie.data(data);
+                    pie.title("Daily Analytics");
+                    pie.labels().position("outside");
+                    pie.legend().title().enabled(true);
+                    pie.legend().title()
+                            .text("Itens Spent On")
+                            .padding(0d, 0d, 10d, 0d);
+                    pie.legend()
+                            .position("center-bottom")
+                            .itemsLayout(LegendLayout.HORIZONTAL)
+                            .align(Align.CENTER);
 
 
+                    anyChartView.setChart(pie);
 
+
+                }else {
+                    Toast.makeText(DailyAnalyticsActivity.this, "Child does not exist", Toast.LENGTH_SHORT).show();
                 }
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(DailyAnalyticsActivity.this, "Child does not exist", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
+
+    private void setStatusAndImageResource() {
+        personalRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+
+                    int traTotal;
+                    if (snapshot.hasChild("dayTrans")){
+                        traTotal = Integer.parseInt(snapshot.child("dayTrans").getValue().toString());
+                    }else {
+                        traTotal = 0;
+                    }
+
+                    int foodTotal;
+                    if (snapshot.hasChild("dayFood")){
+                        foodTotal = Integer.parseInt(snapshot.child("dayFood").getValue().toString());
+                    }else {
+                        foodTotal = 0;
+                    }
+
+                    int houseTotal;
+                    if (snapshot.hasChild("dayHouse")){
+                        houseTotal = Integer.parseInt(snapshot.child("dayHouse").getValue().toString());
+                    }else {
+                        houseTotal = 0;
+                    }
+
+                    int entTotal;
+                    if (snapshot.hasChild("dayEnt")){
+                        entTotal = Integer.parseInt(snapshot.child("dayEnt").getValue().toString());
+                    }else {
+                        entTotal = 0;
+                    }
+
+                    int eduTotal;
+                    if (snapshot.hasChild("dayEdu")){
+                        eduTotal = Integer.parseInt(snapshot.child("dayEdu").getValue().toString());
+                    }else {
+                        eduTotal = 0;
+                    }
+
+                    int chaTotal;
+                    if (snapshot.hasChild("dayCha")){
+                        chaTotal = Integer.parseInt(snapshot.child("dayCha").getValue().toString());
+                    }else {
+                        chaTotal = 0;
+                    }
+
+                    int appTotal;
+                    if (snapshot.hasChild("dayApp")){
+                        appTotal = Integer.parseInt(snapshot.child("dayApp").getValue().toString());
+                    }else {
+                        appTotal = 0;
+                    }
+
+                    int heaTotal;
+                    if (snapshot.hasChild("dayHea")){
+                        heaTotal = Integer.parseInt(snapshot.child("dayHea").getValue().toString());
+                    }else {
+                        heaTotal = 0;
+                    }
+
+                    int perTotal;
+                    if (snapshot.hasChild("dayPer")){
+                        perTotal = Integer.parseInt(snapshot.child("dayPer").getValue().toString());
+                    }else {
+                        perTotal = 0;
+                    }
+
+                    int othTotal;
+                    if (snapshot.hasChild("dayOther")){
+                        othTotal = Integer.parseInt(snapshot.child("dayOther").getValue().toString());
+                    }else {
+                        othTotal = 0;
+                    }
+
+                    Pie pie = AnyChart.pie();
+                    List<DataEntry> data = new ArrayList<>();
+                    data.add(new ValueDataEntry("Transport", traTotal));
+                    data.add(new ValueDataEntry("House exp", houseTotal));
+                    data.add(new ValueDataEntry("Food", foodTotal));
+                    data.add(new ValueDataEntry("Entertainment", entTotal));
+                    data.add(new ValueDataEntry("Education", eduTotal));
+                    data.add(new ValueDataEntry("Charity", chaTotal));
+                    data.add(new ValueDataEntry("Apparel", appTotal));
+                    data.add(new ValueDataEntry("Health", heaTotal));
+                    data.add(new ValueDataEntry("Personal", perTotal));
+                    data.add(new ValueDataEntry("Other", othTotal));
+
+                    pie.data(data);
+                    pie.title("Daily Analytics");
+                    pie.labels().position("outside");
+                    pie.legend().title().enabled(true);
+                    pie.legend().title()
+                            .text("Itens Spent On")
+                            .padding(0d, 0d, 10d, 0d);
+                    pie.legend()
+                            .position("center-bottom")
+                            .itemsLayout(LegendLayout.HORIZONTAL)
+                            .align(Align.CENTER);
+
+
+                    anyChartView.setChart(pie);
+
+
+                }else {
+                    Toast.makeText(DailyAnalyticsActivity.this, "Child does not exist", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(DailyAnalyticsActivity.this, "Child does not exist", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    } //TODO
+
 
 
 }
