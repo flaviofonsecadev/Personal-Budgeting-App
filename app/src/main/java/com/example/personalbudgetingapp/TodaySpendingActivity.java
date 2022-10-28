@@ -44,6 +44,11 @@ public class TodaySpendingActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String onlineUserId = "";
 
+    //TODO -  Locale localeBR = new Locale("pt", "br");
+    //        NumberFormat currency = NumberFormat.getCurrencyInstance(localeBR);
+    //        ...
+    //        binding.totalAmountSpentOn.setText("Valor total do dia: " + currency.format(totalAmount));
+
     private TodayItemsAdapter todayItemsAdapter;
     private List<Data> myDataList;
 

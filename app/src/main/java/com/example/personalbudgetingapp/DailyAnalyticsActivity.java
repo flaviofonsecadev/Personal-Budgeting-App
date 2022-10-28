@@ -44,6 +44,12 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
     private String onlineUserId = "";
     private ProgressDialog loader;
 
+    //TODO -  Locale localeBR = new Locale("pt", "br");
+    //        NumberFormat currency = NumberFormat.getCurrencyInstance(localeBR);
+    //        ...
+    //        binding.totalAmountSpentOn.setText("Valor total do dia: " + currency.format(totalAmount));
+
+
 
 
     @Override
@@ -81,7 +87,7 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
                 loadGraph();
                 setStatusAndImageResource();
             }
-        }, 200);
+        }, 2000);
 
 
 
@@ -92,12 +98,12 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
     private void getTotalWeekTransportExpenses() {
         MutableDateTime epoch = new MutableDateTime();
         epoch.setDate(0); //Set to Epoch time
-        DateTime now = new DateTime();
 
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendar = Calendar.getInstance();
         String date = dateFormat.format(calendar.getTime());
         String itemNday = "Transport" + date;
+
 
         Query query = expensesRef.orderByChild("itemNday").equalTo(itemNday);
         query.addValueEventListener(new ValueEventListener() {
@@ -115,6 +121,8 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
                     personalRef.child("dayTrans").setValue(totalAmount);
                 } else {
                     binding.linearLayoutTransport.setVisibility(View.GONE);
+                    //TODO - isso foi acrescentado na analitics week
+                    // personalRef.child("dayTrans").setValue(0);
                 }
             }
 
@@ -129,7 +137,6 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
     private void getTotalWeekFoodExpenses() {
         MutableDateTime epoch = new MutableDateTime();
         epoch.setDate(0); //Set to Epoch time
-        DateTime now = new DateTime();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendar = Calendar.getInstance();
         String date = dateFormat.format(calendar.getTime());
@@ -164,7 +171,6 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
     private void getTotalWeekHouseExpenses() {
         MutableDateTime epoch = new MutableDateTime();
         epoch.setDate(0); //Set to Epoch time
-        DateTime now = new DateTime();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendar = Calendar.getInstance();
         String date = dateFormat.format(calendar.getTime());
@@ -200,7 +206,6 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
     private void getTotalWeekEntertainenmentExpenses() {
         MutableDateTime epoch = new MutableDateTime();
         epoch.setDate(0); //Set to Epoch time
-        DateTime now = new DateTime();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendar = Calendar.getInstance();
         String date = dateFormat.format(calendar.getTime());
@@ -235,7 +240,6 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
     private void getTotalWeekEducationExpenses() {
         MutableDateTime epoch = new MutableDateTime();
         epoch.setDate(0); //Set to Epoch time
-        DateTime now = new DateTime();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendar = Calendar.getInstance();
         String date = dateFormat.format(calendar.getTime());
@@ -270,7 +274,6 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
     private void getTotalWeekCharityExpenses() {
         MutableDateTime epoch = new MutableDateTime();
         epoch.setDate(0); //Set to Epoch time
-        DateTime now = new DateTime();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendar = Calendar.getInstance();
         String date = dateFormat.format(calendar.getTime());
@@ -305,7 +308,6 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
     private void getTotalWeekApparelExpenses() {
         MutableDateTime epoch = new MutableDateTime();
         epoch.setDate(0); //Set to Epoch time
-        DateTime now = new DateTime();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendar = Calendar.getInstance();
         String date = dateFormat.format(calendar.getTime());
@@ -340,7 +342,6 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
     private void getTotalWeekHealthExpenses() {
         MutableDateTime epoch = new MutableDateTime();
         epoch.setDate(0); //Set to Epoch time
-        DateTime now = new DateTime();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendar = Calendar.getInstance();
         String date = dateFormat.format(calendar.getTime());
@@ -375,7 +376,6 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
     private void getTotalWeekPersonalExpenses() {
         MutableDateTime epoch = new MutableDateTime();
         epoch.setDate(0); //Set to Epoch time
-        DateTime now = new DateTime();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendar = Calendar.getInstance();
         String date = dateFormat.format(calendar.getTime());
@@ -410,7 +410,6 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
     private void getTotalWeekOtherExpenses() {
         MutableDateTime epoch = new MutableDateTime();
         epoch.setDate(0); //Set to Epoch time
-        DateTime now = new DateTime();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendar = Calendar.getInstance();
         String date = dateFormat.format(calendar.getTime());
@@ -441,7 +440,6 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void getTotalDaySpending() {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -476,7 +474,6 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void loadGraph() {
         personalRef.addValueEventListener(new ValueEventListener() {
@@ -557,7 +554,7 @@ public class DailyAnalyticsActivity extends AppCompatActivity {
                     Pie pie = AnyChart.pie();
                     List<DataEntry> data = new ArrayList<>();
                     data.add(new ValueDataEntry("Transport", traTotal));
-                    data.add(new ValueDataEntry("House exp", houseTotal));
+                    data.add(new ValueDataEntry("House", houseTotal));
                     data.add(new ValueDataEntry("Food", foodTotal));
                     data.add(new ValueDataEntry("Entertainment", entTotal));
                     data.add(new ValueDataEntry("Education", eduTotal));
