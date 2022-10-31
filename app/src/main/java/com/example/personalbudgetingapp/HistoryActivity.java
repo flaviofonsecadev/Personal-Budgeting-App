@@ -94,27 +94,35 @@ public class HistoryActivity extends AppCompatActivity implements DatePickerDial
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                myDataList.clear();
-                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    Data data = snapshot1.getValue(Data.class);
-                    myDataList.add(data);
-                }
-                todayItemsAdapter.notifyDataSetChanged();
-                binding.recyclerviewFeed.setVisibility(View.VISIBLE);
+                if (snapshot.exists()){
+                    myDataList.clear();
+                    binding.historyTotalAmountSpent.setVisibility(View.INVISIBLE);
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                        Data data = snapshot1.getValue(Data.class);
+                        myDataList.add(data);
+                    }
+                    todayItemsAdapter.notifyDataSetChanged();
+                    binding.recyclerviewFeed.setVisibility(View.VISIBLE);
 
-                int totalAmount = 0;
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    Map<String, Object> map = (Map<String, Object>) ds.getValue();
-                    Object total = map.get("amount");
-                    int pTotal = Integer.parseInt(String.valueOf(total));
-                    totalAmount += pTotal;
-                    if (totalAmount > 0) {
-                        binding.historyTotalAmountSpent.setVisibility(View.VISIBLE);
-                        binding.historyTotalAmountSpent.setText("Gastos deste dia " + totalAmount);
+                    int totalAmount = 0;
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        Map<String, Object> map = (Map<String, Object>) ds.getValue();
+                        Object total = map.get("amount");
+                        int pTotal = Integer.parseInt(String.valueOf(total));
+                        totalAmount += pTotal;
+                        if (totalAmount > 0) {
+                            binding.historyTotalAmountSpent.setVisibility(View.VISIBLE);
+                            binding.historyTotalAmountSpent.setText("Gastos deste dia " + totalAmount);
+
+                        }
 
                     }
-
+                } else {
+                    binding.recyclerviewFeed.setVisibility(View.INVISIBLE);
+                    binding.historyTotalAmountSpent.setVisibility(View.INVISIBLE);
+                    Toast.makeText(HistoryActivity.this, "Não há movimentaões nesta data", Toast.LENGTH_SHORT).show();
                 }
+
             }
 
             @Override
