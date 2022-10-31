@@ -5,6 +5,7 @@
     <string name="senha">Senha</string>
     <string name="email">Email</string>
     <string name="logo">Logo</string>
+    <string name="search">Search</string>
 
     <string-array name="items">
         <item>Escolher tipo</item>

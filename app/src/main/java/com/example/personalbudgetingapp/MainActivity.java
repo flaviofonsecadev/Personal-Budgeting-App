@@ -54,14 +54,11 @@ public class MainActivity extends AppCompatActivity {
         budgetRef = FirebaseDatabase.getInstance().getReference("budget").child(onlineUserId);
 
         binding.budgetBtnImageView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, BudgetActivity.class)));
-        
         binding.todayCardView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, TodaySpendingActivity.class)));
-
         binding.weekBtnImageView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, WeekSpendingActivity.class)));
-
         binding.monthBtnImageView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, MonthSpendingActivity.class)));
-
         binding.analyticsImageView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ChooseAnalyticActivity.class)));
+        binding.historyCardView.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, HistoryActivity.class)));
 
         budgetRef.addValueEventListener(new ValueEventListener() {
             @Override
